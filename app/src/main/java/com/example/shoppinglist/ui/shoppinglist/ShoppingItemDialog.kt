@@ -2,10 +2,9 @@ package com.example.shoppinglist.ui.shoppinglist
 
 import android.content.Context
 import android.os.Bundle
-import android.widget.TextView
+import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialog
-import com.example.shoppinglist.R
 import com.example.shoppinglist.data.entity.ShoppingItem
 import com.example.shoppinglist.databinding.DialogAddShoppingItemBinding
 
@@ -16,30 +15,26 @@ class ShoppingItemDialog(context: Context, var addDialogListener: AddDialogListe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dialog_add_shopping_item)
         binding = DialogAddShoppingItemBinding.inflate(layoutInflater)
-        val tvAdd2 = findViewById<TextView>(R.id.btnAdd)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
+        setContentView(binding.root)
 
+        binding.btnAdd.setOnClickListener {
+            val name = binding.etName.text?.toString()
+            val amount = binding.etAmount.text?.toString()
 
-        with(binding) {
-            btnAdd.setOnClickListener {
-
-                val name = etName.text.toString()
-                val amount = etAmount.text.toString()
-
-                if (name.isEmpty() || amount.isEmpty()) {
-                    Toast.makeText(context, "Fill all info", Toast.LENGTH_LONG).show()
-                    return@setOnClickListener
-                }
-
-                val item = ShoppingItem(name, amount.toInt())
-                addDialogListener.onAddButtonClick(item)
-                dismiss()
+            if (name?.isEmpty() == true || amount?.isEmpty() == true) {
+                Toast.makeText(context, "Name and amount are necessary fields!", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
             }
 
-            btnCancel.setOnClickListener {
-                cancel()
-            }
+            val item = ShoppingItem(name!!, amount!!.toInt())
+            addDialogListener.onAddButtonClick(item)
+            dismiss()
+        }
+
+        binding.btnCancel.setOnClickListener {
+            cancel()
         }
     }
 }
