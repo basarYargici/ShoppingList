@@ -1,3 +1,5 @@
+package com.example.shoppinglist.data.db
+
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.shoppinglist.data.entity.ShoppingItem

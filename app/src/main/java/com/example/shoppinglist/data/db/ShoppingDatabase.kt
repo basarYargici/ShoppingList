@@ -1,6 +1,5 @@
 package com.example.shoppinglist.data.db
 
-import ShoppingDao
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
@@ -13,7 +12,7 @@ import com.example.shoppinglist.data.entity.ShoppingItem
 )
 abstract class ShoppingDatabase : RoomDatabase() {
 
-    abstract fun getShoppingDap(): ShoppingDao
+    abstract fun getShoppingDao(): ShoppingDao
 
     companion object {
         @Volatile

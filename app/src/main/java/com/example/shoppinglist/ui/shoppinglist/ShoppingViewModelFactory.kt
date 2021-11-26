@@ -2,7 +2,7 @@ package com.example.shoppinglist.ui.shoppinglist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.shoppinglist.repository.ShoppingRepository
+import com.example.shoppinglist.data.repository.ShoppingRepository
 
 class ShoppingViewModelFactory(
     private val repository: ShoppingRepository
